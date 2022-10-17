@@ -1,4 +1,3 @@
-//https://github.com/metam2/Chemotaxis
 int number = 10;
 organism[] array = new organism [number];
 
@@ -25,7 +24,7 @@ void draw()
 //hardMode conditions
   if(hardMode == true)
   {
-    speed = 2;
+    speed = 3;
     textSize(15);
     text("Hard Mode Enabled >:(", 100, 30);
 
@@ -101,7 +100,6 @@ class organism
    }
    if((mouseX -2 < xCoord && xCoord < mouseX +2) && (mouseY -2 < yCoord && yCoord < mouseY + 2))
    {
-     gameOver();
      condition = false;
    }
  }
@@ -116,11 +114,4 @@ class organism
    }
    ellipse(xCoord, yCoord, 10, 10);
  }
-}
-
-void gameOver()
-{
-  textSize(40);
-  fill(#FFFFFF);
-  text("Game Over", 150, 150);
 }
