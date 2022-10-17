@@ -1,5 +1,5 @@
 int number = 10;
-organism[] array = new organism [number];
+organism[] array = new organism [number +=10];
 
 int speed = 1;
 boolean condition = true;
@@ -30,7 +30,7 @@ void draw()
 
   }
 
- for(int i = 0; i< 10; i++)
+ for(int i = 0; i < number; i++)
  {
    int randC1 = (int)(Math.random()*255 + 50);
    int randC2 = (int)(Math.random()*255 + 50);
@@ -55,6 +55,7 @@ void mouseClicked()
   textSize(15);
   fill(#FFFFFF);
   hardMode = true;
+  number = 20;
 }
 
 class organism
@@ -113,5 +114,8 @@ class organism
      fill(randC1, randC2, randC3);
    }
    ellipse(xCoord, yCoord, 10, 10);
+   ellipse(xCoord -2, yCoord - 2, 2, 2);
+   ellipse(xCoord +2, yCoord - 2, 2, 2);
+   rect(xCoord -3, yCoord + 2, 5, 1);
  }
 }
