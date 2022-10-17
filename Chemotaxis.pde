@@ -1,13 +1,126 @@
- //declare bacteria variables here   
- void setup()   
- {     
- 	//initialize bacteria variables here   
- }   
- void draw()   
- {    
- 	//move and show the bacteria   
- }  
- class Bacteria    
- {     
- 	//lots of java!   
- }    
+//https://github.com/metam2/Chemotaxis
+int number = 10;
+organism[] array = new organism [number];
+
+int speed = 1;
+boolean condition = true;
+boolean hardMode = false;
+void setup()
+{
+  size(300, 300);
+  for(int i = 0; i< number; i++)
+   {
+     int randX = (int)(Math.random()*200 + 10);
+     int randY = (int)(Math.random()*200 + 10);
+     
+     array[i] = new organism(randX, randY);
+   }
+}
+
+void draw()
+{  
+  fill(#F5316C);
+  background(100);
+
+//hardMode conditions
+  if(hardMode == true)
+  {
+    speed = 2;
+    textSize(15);
+    text("Hard Mode Enabled >:(", 100, 30);
+
+  }
+
+ for(int i = 0; i< 10; i++)
+ {
+   int randC1 = (int)(Math.random()*255 + 50);
+   int randC2 = (int)(Math.random()*255 + 50);
+   int randC3 = (int)(Math.random()*255 + 50);
+   
+   array[i].show(randC1, randC2, randC3);
+  
+  if(condition == true)
+  {
+   array[i].move();
+  }
+  else
+  {
+    fill(#FFFFFF);
+    textSize(50);
+    text("Game Over", 10, 100);
+  }
+ }
+}
+void mouseClicked()
+{
+  textSize(15);
+  fill(#FFFFFF);
+  hardMode = true;
+}
+
+class organism
+{
+  int xCoord, yCoord, Color;
+  int counter = 0;
+  organism(int x, int y)
+  {
+    xCoord = x;
+    yCoord = y;
+  }
+  
+ void move()
+ {
+   for(int i = 0; i < speed; i++)
+   {
+   if(Math.random() > 0.5)
+     {
+       xCoord += 2;
+     } 
+     else {xCoord -= 2;}
+   if(Math.random() > 0.5)
+     {
+       yCoord += 2;
+     } 
+     else {yCoord -= 2;}
+   
+   if(mouseX + 10 >= xCoord)
+   {    
+      xCoord++;
+   }
+   if(mouseY + 10 >= yCoord)
+   {    
+      yCoord++;
+   }
+    if(mouseX - 10 <= xCoord)
+   {    
+      xCoord--;
+   }
+   if(mouseY - 10 <= yCoord)
+   {    
+      yCoord--;
+   }
+   if((mouseX -2 < xCoord && xCoord < mouseX +2) && (mouseY -2 < yCoord && yCoord < mouseY + 2))
+   {
+     gameOver();
+     condition = false;
+   }
+ }
+} 
+ 
+ void show(int randC1, int randC2, int randC3)
+ {
+   fill(#3477E8);
+   if(condition == true)
+   {
+     fill(randC1, randC2, randC3);
+   }
+   ellipse(xCoord, yCoord, 10, 10);
+ }
+}
+
+void gameOver()
+{
+  textSize(40);
+  fill(#FFFFFF);
+  text("Game Over", 150, 150);
+}
