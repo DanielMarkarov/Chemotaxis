@@ -4,6 +4,7 @@ organism[] array = new organism [number +=10];
 int speed = 1;
 boolean condition = true;
 boolean hardMode = false;
+int score = 0;
 void setup()
 {
   size(300, 300);
@@ -18,13 +19,14 @@ void setup()
 
 void draw()
 {  
+  text("Score: " + score, 10, 10);
   fill(#F5316C);
   background(100);
 
 //hardMode conditions
   if(hardMode == true)
   {
-    speed = 3;
+    speed = 5;
     textSize(15);
     text("Hard Mode Enabled >:(", 100, 30);
 
@@ -47,6 +49,8 @@ void draw()
     fill(#FFFFFF);
     textSize(50);
     text("Game Over", 10, 100);
+    textSize(25);
+    text("Score: " + (score / 10), 10, 140);
   }
  }
 }
@@ -103,6 +107,7 @@ class organism
    {
      condition = false;
    }
+   score++;
  }
 } 
  
@@ -116,6 +121,6 @@ class organism
    ellipse(xCoord, yCoord, 10, 10);
    ellipse(xCoord -2, yCoord - 2, 2, 2);
    ellipse(xCoord +2, yCoord - 2, 2, 2);
-   rect(xCoord -3, yCoord + 2, 5, 1);
+   rect   (xCoord -3, yCoord + 2, 5, 1);
  }
 }
